@@ -1,0 +1,245 @@
+<title>Funnel Discovery Cheat Sheet</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+/* Layout: a fight card. Six timed rounds in a grid, with a live gap calculator and the corner notes beside it. */
+:root {
+  --bg: #EEF0F4;
+  --surface: #FFFFFF;
+  --ink: #141A26;
+  --muted: #5A6375;
+  --line: #D8DCE4;
+  --accent: #C3172E;
+  --accent-soft: #FBE8EB;
+  --display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "Barlow", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E121A; --surface: #171D28; --ink: #E8EBF1; --muted: #98A1B3;
+    --line: #283041; --accent: #FF5C70; --accent-soft: #3A1B22; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E121A; --surface: #171D28; --ink: #E8EBF1; --muted: #98A1B3;
+  --line: #283041; --accent: #FF5C70; --accent-soft: #3A1B22; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--body);
+  font-size: 15px; line-height: 1.45;
+}
+.wrap {
+  max-width: 1180px; margin: 0 auto;
+  padding-block: 28px 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 20px;
+}
+header { display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: end; justify-content: space-between; }
+.eyebrow {
+  font-family: var(--display); font-weight: 600; text-transform: uppercase;
+  letter-spacing: .12em; font-size: 13px; color: var(--accent);
+}
+h1 {
+  font-family: var(--display); font-weight: 700; text-transform: uppercase;
+  font-size: clamp(32px, 5vw, 48px); line-height: .95; margin: 4px 0 0; text-wrap: balance;
+}
+.rule {
+  max-width: 440px; margin: 0; padding: 12px 16px; border-left: 4px solid var(--accent);
+  background: var(--surface); font-weight: 500;
+}
+.rule b { color: var(--accent); }
+
+.main { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 20px; align-items: start; }
+@media (max-width: 920px) { .main { grid-template-columns: minmax(0, 1fr); } }
+
+.rounds { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 640px) { .rounds { grid-template-columns: minmax(0, 1fr); } }
+
+.round {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+  padding: 14px 16px 16px; display: grid; gap: 8px; align-content: start; min-width: 0;
+}
+.round-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.round h2 {
+  font-family: var(--display); font-weight: 700; text-transform: uppercase;
+  font-size: 22px; margin: 0; letter-spacing: .02em;
+}
+.round h2 span { color: var(--accent); margin-right: 6px; }
+.time {
+  font-family: var(--display); font-weight: 600; font-size: 14px; color: var(--muted);
+  font-variant-numeric: tabular-nums; letter-spacing: .04em; white-space: nowrap;
+}
+.goal { margin: 0; font-size: 13px; color: var(--muted); }
+.round ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.say {
+  margin: 0; padding: 8px 10px; background: var(--accent-soft); border-radius: 4px;
+  font-size: 14px;
+}
+.say::before {
+  content: "Say"; display: block; font-family: var(--display); font-weight: 600;
+  text-transform: uppercase; letter-spacing: .1em; font-size: 11px; color: var(--accent);
+}
+
+aside { display: grid; gap: 12px; min-width: 0; }
+.panel {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+  padding: 14px 16px 16px; display: grid; gap: 8px;
+}
+.panel h3 {
+  font-family: var(--display); font-weight: 700; text-transform: uppercase;
+  font-size: 18px; margin: 0; letter-spacing: .03em;
+}
+.panel.calc { border: 2px solid var(--accent); }
+.fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.fields label { display: grid; gap: 3px; font-size: 12px; color: var(--muted); font-weight: 500; }
+.fields input {
+  width: 100%; font: inherit; font-size: 16px; font-weight: 600; color: var(--ink);
+  background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 6px 8px;
+  font-variant-numeric: tabular-nums;
+}
+.fields input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.gap { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.gap strong {
+  font-family: var(--display); font-weight: 700; font-size: 34px; color: var(--accent);
+  font-variant-numeric: tabular-nums; line-height: 1;
+}
+.gap span { color: var(--muted); font-size: 13px; }
+.script { margin: 0; font-size: 14px; padding: 8px 10px; background: var(--accent-soft); border-radius: 4px; }
+.panel ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 14px; }
+.checks { list-style: none; padding-left: 0 !important; }
+.checks label { display: flex; gap: 8px; align-items: start; cursor: pointer; }
+.checks input { margin-top: 3px; accent-color: var(--accent); }
+.never li::marker { content: "✕  "; color: var(--accent); }
+.note { margin: 0; font-size: 12px; color: var(--muted); }
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">First call · 15 minutes · Online boxing coaches</div>
+      <h1>Funnel Discovery Cheat Sheet</h1>
+    </div>
+    <p class="rule">Don't tell them they need a funnel. <b>Get them to say the gap</b>: where they are now vs. where they want to be, in dollars.</p>
+  </header>
+
+  <div class="main">
+    <section class="rounds" aria-label="Call structure">
+      <article class="round">
+        <div class="round-head"><h2><span>R1</span>Open</h2><span class="time">0:00–1:00</span></div>
+        <p class="goal">Set the agenda. Show you're not desperate.</p>
+        <p class="say">"My goal is to understand how you get clients right now and see if I can help. If I can't, I'll tell you straight. Cool if I ask a few questions?"</p>
+      </article>
+
+      <article class="round">
+        <div class="round-head"><h2><span>R2</span>Situation</h2><span class="time">1:00–4:00</span></div>
+        <p class="goal">How their business works today. Keep it short.</p>
+        <ul>
+          <li>What do you sell right now, and at what price?</li>
+          <li>How many clients do you have at the moment?</li>
+          <li>Walk me through how someone goes from seeing your post to paying you.</li>
+          <li>Roughly how many DMs or inquiries a month?</li>
+        </ul>
+      </article>
+
+      <article class="round">
+        <div class="round-head"><h2><span>R3</span>Problem</h2><span class="time">4:00–8:00</span></div>
+        <p class="goal">Dig in. This is the longest round.</p>
+        <ul>
+          <li>Of those inquiries, how many become clients?</li>
+          <li>Where do people drop off?</li>
+          <li>How many hours a week do you spend in DMs?</li>
+        </ul>
+        <p class="say">"Tell me more about that." · "How long has that been happening?" · "Roughly how many? 10? 50?"</p>
+      </article>
+
+      <article class="round">
+        <div class="round-head"><h2><span>R4</span>Impact &amp; goal</h2><span class="time">8:00–11:00</span></div>
+        <p class="goal">Find the number. Let them do the math.</p>
+        <ul>
+          <li>What's your goal: how many clients, or what monthly income?</li>
+          <li>What's stopping you from getting there now?</li>
+          <li>If nothing changes in 6 months, what does that look like?</li>
+          <li>If calls got booked every week without you, what would you do with your time?</li>
+        </ul>
+      </article>
+
+      <article class="round">
+        <div class="round-head"><h2><span>R5</span>Process</h2><span class="time">11:00–13:00</span></div>
+        <p class="goal">How they'll decide, and how soon.</p>
+        <ul>
+          <li>Have you tried anything to fix this? Courses, an agency, doing it yourself?</li>
+          <li>Would you decide on your own, or is anyone else involved?</li>
+          <li>If something worked, are you looking to start soon or later?</li>
+        </ul>
+      </article>
+
+      <article class="round">
+        <div class="round-head"><h2><span>R6</span>Close</h2><span class="time">13:00–15:00</span></div>
+        <p class="goal">Summarize, then book the follow-up.</p>
+        <p class="say">"You're getting [X] inquiries but converting [Y] because [reason]. You want [goal], about [$ gap] a month. And you're spending [Z] hours in DMs. Did I miss anything?"</p>
+        <p class="say">"I'll put together a quick plan of what your funnel would look like and walk you through it. 20 minutes, [day]?"</p>
+      </article>
+    </section>
+
+    <aside>
+      <section class="panel calc" aria-labelledby="calc-h">
+        <h3 id="calc-h">Gap calculator</h3>
+        <div class="fields">
+          <label for="cur">Clients now<input id="cur" type="number" inputmode="numeric" min="0" value="6"></label>
+          <label for="price">$ / client / mo<input id="price" type="number" inputmode="numeric" min="0" value="150"></label>
+          <label for="goal">Goal clients<input id="goal" type="number" inputmode="numeric" min="0" value="15"></label>
+        </div>
+        <div class="gap"><strong id="gapMo">$1,350</strong><span id="gapYr">a month · $16,200 a year</span></div>
+        <p class="script" id="gapLine"></p>
+        <p class="note">Example numbers. Type in theirs during the call.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="proof-h">
+        <h3 id="proof-h">"Do you have results?"</h3>
+        <p class="script">"Not yet, and I'll be straight with you. You'd be one of my first boxing coaches. That's why I'm offering a founding rate, and [you pay the rest once your funnel is live]. In return I'd ask for an honest testimonial if it works."</p>
+        <p class="note">Guarantee your work, never their results.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="never-h">
+        <h3 id="never-h">Never</h3>
+        <ul class="never">
+          <li>Pitch the moment they name a problem</li>
+          <li>Accept a vague number</li>
+          <li>Fill a silence after your question</li>
+          <li>Talk funnels more than their clients, income and time</li>
+          <li>Promise a number of clients</li>
+        </ul>
+      </section>
+
+      <section class="panel" aria-labelledby="prep-h">
+        <h3 id="prep-h">10 min before</h3>
+        <ul class="checks">
+          <li><label for="p1"><input type="checkbox" id="p1">Click through their link in bio</label></li>
+          <li><label for="p2"><input type="checkbox" id="p2">Note what they sell, and the price if shown</label></li>
+          <li><label for="p3"><input type="checkbox" id="p3">Write 2–3 specific weak spots</label></li>
+          <li><label for="p4"><input type="checkbox" id="p4">Write your guess at their main problem</label></li>
+        </ul>
+      </section>
+    </aside>
+  </div>
+</div>
+
+<script>
+(function () {
+  var cur = document.getElementById('cur'), price = document.getElementById('price'), goal = document.getElementById('goal');
+  var fmt = function (n) { return '$' + Math.round(n).toLocaleString('en-US'); };
+  function update() {
+    var c = Math.max(0, +cur.value || 0), p = Math.max(0, +price.value || 0), g = Math.max(0, +goal.value || 0);
+    var gap = Math.max(0, g - c) * p;
+    document.getElementById('gapMo').textContent = fmt(gap);
+    document.getElementById('gapYr').textContent = 'a month · ' + fmt(gap * 12) + ' a year';
+    document.getElementById('gapLine').textContent = '"So you\'re at ' + c + ' clients at ' + fmt(p) +
+      ' a month and want ' + g + '. That\'s about ' + fmt(gap) + ' a month you\'re not making yet. Sound right?"';
+  }
+  [cur, price, goal].forEach(function (el) { el.addEventListener('input', update); });
+  update();
+})();
+</script>
