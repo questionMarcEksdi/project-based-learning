@@ -1,0 +1,166 @@
+/*
+ * Premium UI palettes: 5 palettes × light/dark × 13 tokens.
+ * Usage: <html data-palette="champagne" data-theme="light">
+ * Contrast (WCAG 2.x, computed): text ≥ 7:1 on bg/surface, text-muted ≥ 4.5:1,
+ * on-accent ≥ 4.5:1 on accent, accent and focus-ring ≥ 3:1 on bg.
+ */
+
+/* Champagne: Warm ivory with a champagne-gold accent; quiet luxury. Best for hospitality, jewelry, boutique e-commerce. */
+[data-palette="champagne"][data-theme="light"] {
+  --color-bg: #F8F6F1;
+  --color-surface: #FCFAF8;
+  --color-surface-raised: #FDFDFB;
+  --color-border: #E2DED4;
+  --color-text: #262017;
+  --color-text-muted: #6D6355;
+  --color-accent: #906E2A;
+  --color-accent-hover: #7B5E24;
+  --color-on-accent: #FCFBF8;
+  --color-focus-ring: #B4872D;
+  --color-success: #3D664B;
+  --color-warning: #965D2C;
+  --color-danger: #9B433B;
+}
+[data-palette="champagne"][data-theme="dark"] {
+  --color-bg: #171511;
+  --color-surface: #201D18;
+  --color-surface-raised: #28241F;
+  --color-border: #3E3932;
+  --color-text: #F1EDE4;
+  --color-text-muted: #B0A99B;
+  --color-accent: #D3B369;
+  --color-accent-hover: #DDC388;
+  --color-on-accent: #1A150F;
+  --color-focus-ring: #D4AE54;
+  --color-success: #80B391;
+  --color-warning: #D39E69;
+  --color-danger: #D4847D;
+}
+
+/* Admiralty: Deep navy and soft ivory with a brass accent; heritage and trust. Best for finance, legal, premium B2B. */
+[data-palette="admiralty"][data-theme="light"] {
+  --color-bg: #F8F6F2;
+  --color-surface: #FCFBF8;
+  --color-surface-raised: #FDFDFC;
+  --color-border: #D3D7DE;
+  --color-text: #16213B;
+  --color-text-muted: #525C6F;
+  --color-accent: #7E6A30;
+  --color-accent-hover: #645426;
+  --color-on-accent: #FAF9F5;
+  --color-focus-ring: #A18636;
+  --color-success: #37624D;
+  --color-warning: #96642C;
+  --color-danger: #9B3B3B;
+}
+[data-palette="admiralty"][data-theme="dark"] {
+  --color-bg: #0E1320;
+  --color-surface: #141A29;
+  --color-surface-raised: #1B2232;
+  --color-border: #2E3548;
+  --color-text: #F2EEE3;
+  --color-text-muted: #A1A9BA;
+  --color-accent: #CCAF66;
+  --color-accent-hover: #D6BF85;
+  --color-on-accent: #0E1320;
+  --color-focus-ring: #CFAD59;
+  --color-success: #7CB699;
+  --color-warning: #D3A269;
+  --color-danger: #D68585;
+}
+
+/* Evergreen: Forest green on bone neutrals; calm, natural, considered. Best for wellness, sustainability, outdoor brands. */
+[data-palette="evergreen"][data-theme="light"] {
+  --color-bg: #F5F3F0;
+  --color-surface: #FBFAF9;
+  --color-surface-raised: #FDFDFC;
+  --color-border: #DBD9D1;
+  --color-text: #15231C;
+  --color-text-muted: #546359;
+  --color-accent: #2B6449;
+  --color-accent-hover: #224F3A;
+  --color-on-accent: #F9F8F5;
+  --color-focus-ring: #307E59;
+  --color-success: #496336;
+  --color-warning: #966A2C;
+  --color-danger: #9B433B;
+}
+[data-palette="evergreen"][data-theme="dark"] {
+  --color-bg: #0E1512;
+  --color-surface: #151E1A;
+  --color-surface-raised: #1C2622;
+  --color-border: #2F3C37;
+  --color-text: #EDEAE3;
+  --color-text-muted: #A1A99E;
+  --color-accent: #6EB994;
+  --color-accent-hover: #8AC7A8;
+  --color-on-accent: #0E1512;
+  --color-focus-ring: #5EBA8C;
+  --color-success: #94B87A;
+  --color-warning: #D3A769;
+  --color-danger: #D4847D;
+}
+
+/* Terracotta: Charcoal and warm off-white with a fired-clay accent; crafted and grounded. Best for architecture, ceramics, editorial. */
+[data-palette="terracotta"][data-theme="light"] {
+  --color-bg: #F6F5F4;
+  --color-surface: #FBFAF9;
+  --color-surface-raised: #FDFCFC;
+  --color-border: #DCD8D6;
+  --color-text: #23201F;
+  --color-text-muted: #665F5C;
+  --color-accent: #AE5132;
+  --color-accent-hover: #92442A;
+  --color-on-accent: #FBFAF8;
+  --color-focus-ring: #CC5933;
+  --color-success: #396049;
+  --color-warning: #936A25;
+  --color-danger: #A1363E;
+}
+[data-palette="terracotta"][data-theme="dark"] {
+  --color-bg: #181616;
+  --color-surface: #201E1D;
+  --color-surface-raised: #282624;
+  --color-border: #3E3A38;
+  --color-text: #EBE8E5;
+  --color-text-muted: #A9A29E;
+  --color-accent: #D38369;
+  --color-accent-hover: #DD9D88;
+  --color-on-accent: #161412;
+  --color-focus-ring: #D47454;
+  --color-success: #80B395;
+  --color-warning: #D3AC69;
+  --color-danger: #D6858B;
+}
+
+/* Sapphire: Near-monochrome cool grey with a single sapphire accent; precise and technical. Best for SaaS, developer tools, fintech dashboards. */
+[data-palette="sapphire"][data-theme="light"] {
+  --color-bg: #F4F4F6;
+  --color-surface: #F9FAFB;
+  --color-surface-raised: #FCFCFD;
+  --color-border: #D8DADF;
+  --color-text: #1A1D23;
+  --color-text-muted: #595E69;
+  --color-accent: #2E57B8;
+  --color-accent-hover: #274A9B;
+  --color-on-accent: #F8F9FB;
+  --color-focus-ring: #3966D0;
+  --color-success: #366350;
+  --color-warning: #8E6429;
+  --color-danger: #A33E46;
+}
+[data-palette="sapphire"][data-theme="dark"] {
+  --color-bg: #121317;
+  --color-surface: #191B1F;
+  --color-surface-raised: #202227;
+  --color-border: #31343A;
+  --color-text: #E8EAEE;
+  --color-text-muted: #9FA3AD;
+  --color-accent: #7C9ADE;
+  --color-accent-hover: #9DB3E7;
+  --color-on-accent: #101318;
+  --color-focus-ring: #6A8CDC;
+  --color-success: #7AB89E;
+  --color-warning: #D3A769;
+  --color-danger: #D98C93;
+}
