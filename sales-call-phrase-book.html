@@ -1,0 +1,293 @@
+<title>Sales Call Phrase Book</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+/* Layout: a corner-man's card. A sticky search bar over three groups (call flow, objections, rescue lines), each a grid of situation cards. Same look as the discovery cheat sheet so they read as a set. */
+:root {
+  --bg: #EEF0F4;
+  --surface: #FFFFFF;
+  --ink: #141A26;
+  --muted: #5A6375;
+  --line: #D8DCE4;
+  --accent: #C3172E;
+  --accent-soft: #FBE8EB;
+  --display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "Barlow", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E121A; --surface: #171D28; --ink: #E8EBF1; --muted: #98A1B3;
+    --line: #283041; --accent: #FF5C70; --accent-soft: #3A1B22; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E121A; --surface: #171D28; --ink: #E8EBF1; --muted: #98A1B3;
+  --line: #283041; --accent: #FF5C70; --accent-soft: #3A1B22; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.45; }
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 10; background: var(--bg);
+}
+.wrap {
+  max-width: 1180px; margin: 0 auto;
+  padding-block: 28px 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 20px;
+}
+header { display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: end; justify-content: space-between; }
+.eyebrow {
+  font-family: var(--display); font-weight: 600; text-transform: uppercase;
+  letter-spacing: .12em; font-size: 13px; color: var(--accent);
+}
+h1 {
+  font-family: var(--display); font-weight: 700; text-transform: uppercase;
+  font-size: clamp(32px, 5vw, 48px); line-height: .95; margin: 4px 0 0; text-wrap: balance;
+}
+.intro { max-width: 460px; margin: 0; color: var(--muted); font-size: 14px; }
+.intro a { color: var(--accent); font-weight: 600; }
+.intro mark { background: var(--accent-soft); color: var(--accent); padding: 0 3px; border-radius: 3px; font-weight: 600; }
+
+.bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--bg); padding-block: 8px;
+  display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center;
+}
+.search { flex: 1 1 260px; min-width: 0; position: relative; }
+.search input {
+  width: 100%; font: inherit; font-size: 16px; color: var(--ink);
+  background: var(--surface); border: 2px solid var(--line); border-radius: 6px; padding: 9px 12px;
+}
+.search input:focus-visible { outline: none; border-color: var(--accent); }
+.jumps { display: flex; flex-wrap: wrap; gap: 6px; }
+.jumps a {
+  font-family: var(--display); font-weight: 600; text-transform: uppercase; letter-spacing: .06em;
+  font-size: 14px; text-decoration: none; color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px;
+}
+.jumps a:hover, .jumps a:focus-visible { border-color: var(--accent); color: var(--accent); outline: none; }
+.count { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.group { display: grid; gap: 12px; scroll-margin-top: 80px; }
+.group-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 6px; }
+.group-head h2 {
+  font-family: var(--display); font-weight: 700; text-transform: uppercase;
+  font-size: 28px; margin: 0; letter-spacing: .02em;
+}
+.group-head p { margin: 0; color: var(--muted); font-size: 14px; }
+
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; align-items: start; }
+@media (max-width: 1000px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .cards { grid-template-columns: minmax(0, 1fr); } }
+
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+  padding: 14px 16px 16px; display: grid; gap: 10px; min-width: 0;
+}
+.card h3 {
+  font-family: var(--display); font-weight: 700; text-transform: uppercase;
+  font-size: 19px; margin: 0; letter-spacing: .03em;
+}
+.items { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.item { display: grid; gap: 2px; }
+.when {
+  font-family: var(--display); font-weight: 600; text-transform: uppercase;
+  letter-spacing: .08em; font-size: 12px; color: var(--muted);
+}
+.say { margin: 0; font-size: 15px; }
+.item.note .say { font-style: italic; color: var(--muted); }
+.item.key .say { background: var(--accent-soft); padding: 8px 10px; border-radius: 4px; }
+.ph { color: var(--accent); font-weight: 600; }
+.empty { text-align: center; color: var(--muted); padding: 32px 0; margin: 0; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">Discovery &amp; sales calls · Online boxing coaches</div>
+      <h1>Sales Call Phrase Book</h1>
+    </div>
+    <p class="intro">Exactly what to say, sorted by the moment you need it. Words in <mark>[brackets]</mark> are yours to fill in. Use it with your <a href="https://claude.ai/artifact/4QLx3fgG1H4ZdDXAioEhjy">Funnel Discovery Cheat Sheet</a>.</p>
+  </header>
+
+  <div class="bar">
+    <div class="search">
+      <label for="q" class="when" style="position:absolute;left:-9999px">Search phrases</label>
+      <input id="q" type="search" placeholder="Search a moment: expensive, ghost, blank, price…" autocomplete="off">
+    </div>
+    <nav class="jumps" aria-label="Jump to section">
+      <a href="#flow">Call flow</a>
+      <a href="#objections">Objections</a>
+      <a href="#rescue">Rescue lines</a>
+    </nav>
+    <span class="count" id="count" aria-live="polite"></span>
+  </div>
+
+  <main id="book"></main>
+  <p class="empty" id="empty" hidden>No phrases match that. Try a shorter word, like "price" or "think".</p>
+</div>
+
+<script>
+var BOOK = [
+  { id: "flow", title: "Call flow", sub: "In roughly the order they come up.", cards: [
+    { h: "Opening", items: [
+      ["Start the call", "Hey [name], thanks for jumping on. I've got us down for 15 minutes. Does that still work?"],
+      ["Set the agenda", "My goal is to understand how you're getting clients right now and see if I can help. If I can't, I'll tell you straight. Cool if I ask a few questions?", "key"],
+      ["Use your homework", "I had a look at your page before this. [Specific thing you noticed]. Mind if I ask about that?"]
+    ]},
+    { h: "Talk shop", items: [
+      ["Warm up", "How'd you get into coaching boxing?"],
+      ["Learn their clients", "Is it mostly beginners, or people who want to compete?"],
+      ["Find their wins", "What kind of results do your clients usually get?"]
+    ]},
+    { h: "React and bridge", items: [
+      ["After every answer", "That makes sense. / Oh, interesting. / Yeah, that's a lot of time."],
+      ["Go back to something", "You mentioned [X] a second ago. Can we go back to that?"],
+      ["Keep the story moving", "Okay, so [repeat what they said]. What happens after that?"],
+      ["Make the problem normal", "That's really common. A lot of coaches I've looked at have the same thing."]
+    ]},
+    { h: "Dig deeper", items: [
+      ["Any time", "Tell me more about that.", "key"],
+      ["They use a vague word", "What do you mean by [their word]?"],
+      ["Make it real", "Can you give me an example from the last month?"],
+      ["Find the cause", "Why do you think that is?"],
+      ["Check history", "How long has that been going on? What have you tried to fix it?"]
+    ]},
+    { h: "Get the numbers", items: [
+      ["They're vague", "Roughly how many? 10? 50? Ballpark is fine."],
+      ["Ask about price", "Can I ask what you charge? I only ask so I don't suggest something that doesn't fit your business."],
+      ["Say the gap", "So you're at [X] clients and want [Y]. That's about [$ gap] a month you're not making yet. Sound right?", "key"]
+    ]},
+    { h: "Impact and goal", items: [
+      ["Their goal", "What's the goal? How many clients, or what monthly income?"],
+      ["Cost of waiting", "What happens if nothing changes in the next six months?"],
+      ["Personal side", "What would it mean for you if you got there?"],
+      ["Priority", "Of everything we talked about, what would you fix first?"]
+    ]},
+    { h: "Summarize", items: [
+      ["Before you close", "Let me make sure I've got it. You're getting [X] inquiries but converting [Y] because [reason]. You want [goal]. Did I miss anything?", "key"],
+      ["Say it's a fit", "Based on what you've told me, I think I can help. Here's why: [one sentence tied to their problem]."]
+    ]},
+    { h: "Book the next step", items: [
+      ["Offer two times", "I'll put together a quick plan of what your funnel would look like and walk you through it. 20 minutes, [day] or [day]?", "key"],
+      ["Lock it in", "I'll send the calendar invite now. Anything you want me to look at before then?"]
+    ]},
+    { h: "Ask for the yes", items: [
+      ["On the follow-up call", "That's the plan. Want to get started?"],
+      ["Then", "Stop talking and wait for their answer.", "note"],
+      ["They say yes", "Great. I'll send the invoice and onboarding form today, and we'll kick off on [day]."]
+    ]}
+  ]},
+  { id: "objections", title: "Objections", sub: "Agree first, then ask a question. Never argue.", cards: [
+    { h: "Do you have results?", items: [
+      ["Be straight", "Not yet, and I'll be honest with you. You'd be one of my first boxing coaches. That's why I'm offering a founding rate, and [your risk-reversal terms]. In return I'd ask for an honest testimonial if it works.", "key"],
+      ["Back it up", "I can show you a sample funnel I built for a boxing coach so you can see the work."]
+    ]},
+    { h: "Why you over others?", items: [
+      ["Your edge", "I only work with boxing coaches, so I'm not guessing about your clients. And as one of my first, you'd get more of my attention than a big agency would give you."]
+    ]},
+    { h: "How much is it? (early)", items: [
+      ["Hold it for later", "Fair question. It depends on what you actually need, which is why I'm asking these. Give me five more minutes and I'll give you a real answer instead of a guess. Okay?"]
+    ]},
+    { h: "That's too expensive", items: [
+      ["First", "I get it. Can I ask, too expensive compared to what?"],
+      ["Then", "You said you're about [$ gap] a month short of your goal. How many new clients would it take for this to pay for itself?", "key"]
+    ]},
+    { h: "I need to think about it", items: [
+      ["Find the real reason", "Of course. Usually when someone says that, there's one part they're not sure about. Is it the price, whether it'll work for you, or the timing?", "key"]
+    ]},
+    { h: "I can build it myself", items: [
+      ["Agree, then ask", "You definitely could. The question is whether you want to spend your evenings on funnel tech or on coaching. How much time do you have for it?"]
+    ]},
+    { h: "I tried a funnel before", items: [
+      ["Get the story", "What happened?"],
+      ["Then", "What would need to be different this time for it to be worth trying?"]
+    ]},
+    { h: "Just send me some info", items: [
+      ["Narrow it down", "Happy to. So I send the right thing, which part do you want to look at more closely?"],
+      ["Keep a next step", "Let's grab 15 minutes after you've read it so I can answer your questions. [Day] work?"]
+    ]},
+    { h: "I need to ask my partner", items: [
+      ["Help them sell it", "Makes sense. What do you think they'll ask?"],
+      ["Bring them in", "Want to set up a time where we all go through it together?"]
+    ]},
+    { h: "Not ready right now", items: [
+      ["Find the timing", "No problem. What would need to happen for it to be the right time?"],
+      ["Leave the door open", "Mind if I check in with you on [date]?"]
+    ]}
+  ]},
+  { id: "rescue", title: "Rescue lines", sub: "When the call goes sideways.", cards: [
+    { h: "You blank", items: [
+      ["Buy time", "Let me make sure I'm following. You said [last thing they said]…", "key"]
+    ]},
+    { h: "They go off topic", items: [
+      ["Steer back", "I love that. I want to make sure we get to [X] before we run out of time. Can I ask you about that?"]
+    ]},
+    { h: "Short answers", items: [
+      ["Open them up", "Paint me a picture of a normal week for you."],
+      ["Or", "Walk me through the last person who DM'd you. What happened?"]
+    ]},
+    { h: "They push you to pitch", items: [
+      ["Hold the frame", "I will, I promise. I just want to understand your setup first so I'm not pitching something you don't need. Two more questions?"]
+    ]},
+    { h: "You don't know the answer", items: [
+      ["Don't guess", "Good question. I don't want to guess, so let me check and get back to you by [day]."]
+    ]},
+    { h: "Running out of time", items: [
+      ["Wrap up", "We've got about three minutes left, so let me sum up what I heard."]
+    ]},
+    { h: "Silence after a question", items: [
+      ["What to do", "Say nothing. Count to five in your head. They'll fill it.", "note"]
+    ]},
+    { h: "It's not a fit", items: [
+      ["Walk away", "Honestly, from what you've told me, I don't think a funnel is what you need right now. [Reason]. I'd rather tell you that than take your money."]
+    ]},
+    { h: "They ghost after the call", items: [
+      ["Follow-up DM", "Hey [name], still want that funnel plan we talked about? I've got [day] or [day] open."]
+    ]}
+  ]}
+];
+
+function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+function fmt(s) { return esc(s).replace(/\[([^\]]+)\]/g, '<span class="ph">[$1]</span>'); }
+
+var book = document.getElementById("book");
+var total = 0;
+book.innerHTML = BOOK.map(function (g) {
+  return '<section class="group" id="' + g.id + '"><div class="group-head"><h2>' + esc(g.title) + '</h2><p>' + esc(g.sub) + '</p></div><div class="cards">' +
+    g.cards.map(function (c) {
+      return '<article class="card"><h3>' + esc(c.h) + '</h3><ul class="items">' +
+        c.items.map(function (it) {
+          total++;
+          var cls = it[2] ? " " + it[2] : "";
+          var text = it[2] === "note" ? fmt(it[1]) : "“" + fmt(it[1]) + "”";
+          return '<li class="item' + cls + '"><span class="when">' + esc(it[0]) + '</span><p class="say">' + text + '</p></li>';
+        }).join("") + '</ul></article>';
+    }).join("") + '</div></section>';
+}).join("");
+
+var q = document.getElementById("q"), count = document.getElementById("count"), empty = document.getElementById("empty");
+function filter() {
+  var term = q.value.trim().toLowerCase(), shown = 0;
+  book.querySelectorAll(".group").forEach(function (g) {
+    var gShown = 0;
+    g.querySelectorAll(".card").forEach(function (c) {
+      var head = c.querySelector("h3").textContent.toLowerCase(), cShown = 0;
+      c.querySelectorAll(".item").forEach(function (it) {
+        var hit = !term || head.indexOf(term) > -1 || it.textContent.toLowerCase().indexOf(term) > -1;
+        it.hidden = !hit; if (hit) cShown++;
+      });
+      c.hidden = cShown === 0; gShown += cShown;
+    });
+    g.hidden = gShown === 0; shown += gShown;
+  });
+  count.textContent = term ? shown + " of " + total + " phrases" : total + " phrases";
+  empty.hidden = shown > 0;
+}
+q.addEventListener("input", filter);
+filter();
+</script>
