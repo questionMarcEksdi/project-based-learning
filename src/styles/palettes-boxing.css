@@ -1,0 +1,208 @@
+/*
+ * SQUARE UP boxing palettes: 5 palettes × light/dark × 17 tokens. Dark is the primary look.
+ * Usage: <html data-palette="iron-corner" data-theme="dark">
+ * Contrast (WCAG 2.x, computed, with headroom): text ≥ 7.2:1 on bg/surface/surface-raised,
+ * text-muted ≥ 4.7:1, each on-accent ≥ 4.7:1 on its accent (and accent-hover),
+ * accents and focus-ring ≥ 3.2:1 on bg, status colors ≥ 4.7:1 on surface.
+ * Accents keep HSL saturation ≥ 70%; neutrals ≤ 20%.
+ */
+
+/* Iron Corner: Blood red, championship gold and steel blue on warm charcoal; raw heritage grit. Best for classic boxing halls and fight clubs with a long history. */
+[data-palette="iron-corner"][data-theme="dark"] {
+  --color-bg: #12100F;
+  --color-surface: #1B1816;
+  --color-surface-raised: #231F1D;
+  --color-border: #393532;
+  --color-text: #F0EDEA;
+  --color-text-muted: #B2AAA3;
+  --color-accent: #E01223;
+  --color-accent-hover: #BF0F1E;
+  --color-on-accent: #FBFAF8;
+  --color-accent-2: #FFCF3D;
+  --color-on-accent-2: #15100C;
+  --color-accent-3: #589EE4;
+  --color-on-accent-3: #15100C;
+  --color-focus-ring: #F25F6B;
+  --color-success: #65EC92;
+  --color-warning: #EC9265;
+  --color-danger: #EC65A8;
+}
+[data-palette="iron-corner"][data-theme="light"] {
+  --color-bg: #F7F6F5;
+  --color-surface: #FBFBFA;
+  --color-surface-raised: #FDFDFD;
+  --color-border: #DEDBD9;
+  --color-text: #211B17;
+  --color-text-muted: #645A54;
+  --color-accent: #D91222;
+  --color-accent-hover: #B80F1D;
+  --color-on-accent: #FCFBFA;
+  --color-accent-2: #AD8200;
+  --color-on-accent-2: #1A140F;
+  --color-accent-3: #2073C5;
+  --color-on-accent-3: #FCFBFA;
+  --color-focus-ring: #C6101F;
+  --color-success: #108136;
+  --color-warning: #9A4013;
+  --color-danger: #9A1357;
+}
+
+/* Volt Lab: Volt lime, ice cyan and signal orange on cool graphite; sleek and data-driven. Best for modern performance studios and high-tech training centers. */
+[data-palette="volt-lab"][data-theme="dark"] {
+  --color-bg: #0F1012;
+  --color-surface: #16181B;
+  --color-surface-raised: #1D1F23;
+  --color-border: #323539;
+  --color-text: #EAEDF0;
+  --color-text-muted: #A3AAB2;
+  --color-accent: #BDFA42;
+  --color-accent-hover: #C9FB65;
+  --color-on-accent: #0C1015;
+  --color-accent-2: #47D8F5;
+  --color-on-accent-2: #0C1015;
+  --color-accent-3: #FF8E3D;
+  --color-on-accent-3: #0C1015;
+  --color-focus-ring: #C4FB56;
+  --color-success: #65EC92;
+  --color-warning: #ECD165;
+  --color-danger: #EC6570;
+}
+[data-palette="volt-lab"][data-theme="light"] {
+  --color-bg: #F5F6F7;
+  --color-surface: #FAFBFB;
+  --color-surface-raised: #FDFDFD;
+  --color-border: #D9DBDE;
+  --color-text: #171B21;
+  --color-text-muted: #545A64;
+  --color-accent: #669804;
+  --color-accent-hover: #7EBA05;
+  --color-on-accent: #0F141A;
+  --color-accent-2: #0995B1;
+  --color-on-accent-2: #0F141A;
+  --color-accent-3: #BD4F00;
+  --color-on-accent-3: #FAFBFC;
+  --color-focus-ring: #669804;
+  --color-success: #108136;
+  --color-warning: #866E11;
+  --color-danger: #9A131E;
+}
+
+/* Main Event: Hot pink, electric blue and violet on near-black; arena lights and walkout energy. Best for gyms that run fight nights, events and late-night classes. */
+[data-palette="main-event"][data-theme="dark"] {
+  --color-bg: #100E13;
+  --color-surface: #17151C;
+  --color-surface-raised: #1E1B25;
+  --color-border: #332F3C;
+  --color-text: #ECEAF0;
+  --color-text-muted: #A8A3B2;
+  --color-accent: #D6057F;
+  --color-accent-hover: #B3056A;
+  --color-on-accent: #F9F8FB;
+  --color-accent-2: #428FFA;
+  --color-on-accent-2: #0F0C15;
+  --color-accent-3: #953BEF;
+  --color-on-accent-3: #F9F8FB;
+  --color-focus-ring: #FB56B6;
+  --color-success: #65EC9D;
+  --color-warning: #ECBF65;
+  --color-danger: #EC6565;
+}
+[data-palette="main-event"][data-theme="light"] {
+  --color-bg: #F6F5F7;
+  --color-surface: #FAFAFB;
+  --color-surface-raised: #FDFDFD;
+  --color-border: #DAD7E0;
+  --color-text: #1A1721;
+  --color-text-muted: #595464;
+  --color-accent: #D80680;
+  --color-accent-hover: #B5056C;
+  --color-on-accent: #FBFAFC;
+  --color-accent-2: #0663E5;
+  --color-on-accent-2: #FBFAFC;
+  --color-accent-3: #7512D9;
+  --color-on-accent-3: #FBFAFC;
+  --color-focus-ring: #D1057C;
+  --color-success: #10813F;
+  --color-warning: #946812;
+  --color-danger: #9A1313;
+}
+
+/* Title Belt: Gold, royal blue and crimson on deep navy; championship prestige. Best for competition gyms and pro or amateur fight teams. */
+[data-palette="title-belt"][data-theme="dark"] {
+  --color-bg: #0E0F14;
+  --color-surface: #14161D;
+  --color-surface-raised: #1A1D26;
+  --color-border: #2E323E;
+  --color-text: #EAECF0;
+  --color-text-muted: #A3A7B2;
+  --color-accent: #FFCF3D;
+  --color-accent-hover: #FFD761;
+  --color-on-accent: #0C0F15;
+  --color-accent-2: #3A65E9;
+  --color-on-accent-2: #F8F9FB;
+  --color-accent-3: #DB1233;
+  --color-on-accent-3: #F8F9FB;
+  --color-focus-ring: #FFD452;
+  --color-success: #65EC9D;
+  --color-warning: #EC9265;
+  --color-danger: #EC65B1;
+}
+[data-palette="title-belt"][data-theme="light"] {
+  --color-bg: #F5F5F8;
+  --color-surface: #FAFAFB;
+  --color-surface-raised: #FDFDFD;
+  --color-border: #D6D9E1;
+  --color-text: #171A21;
+  --color-text-muted: #545864;
+  --color-accent: #AD8200;
+  --color-accent-hover: #D19D00;
+  --color-on-accent: #0F121A;
+  --color-accent-2: #1746D3;
+  --color-on-accent-2: #FAFBFC;
+  --color-accent-3: #D91233;
+  --color-on-accent-3: #FAFBFC;
+  --color-focus-ring: #AD8200;
+  --color-success: #10813F;
+  --color-warning: #9A4013;
+  --color-danger: #9A1360;
+}
+
+/* Open Ring: Coral, teal and plum on warm neutrals; welcoming, upbeat, beginner-friendly. Best for community gyms, fitness boxing and family or youth programs. */
+[data-palette="open-ring"][data-theme="dark"] {
+  --color-bg: #13100F;
+  --color-surface: #1B1715;
+  --color-surface-raised: #241F1C;
+  --color-border: #3A3431;
+  --color-text: #F0ECEA;
+  --color-text-muted: #B2A8A3;
+  --color-accent: #F56447;
+  --color-accent-hover: #F78169;
+  --color-on-accent: #150F0C;
+  --color-accent-2: #4CF0E3;
+  --color-on-accent-2: #150F0C;
+  --color-accent-3: #C11FC1;
+  --color-on-accent-3: #FBF9F8;
+  --color-focus-ring: #F6745A;
+  --color-success: #65EC86;
+  --color-warning: #ECCA65;
+  --color-danger: #EC6586;
+}
+[data-palette="open-ring"][data-theme="light"] {
+  --color-bg: #F7F6F5;
+  --color-surface: #FBFAFA;
+  --color-surface-raised: #FDFDFD;
+  --color-border: #DFDAD8;
+  --color-text: #211A17;
+  --color-text-muted: #645954;
+  --color-accent: #D82D0B;
+  --color-accent-hover: #B6260A;
+  --color-on-accent: #FCFBFA;
+  --color-accent-2: #0C998E;
+  --color-on-accent-2: #1A130F;
+  --color-accent-3: #C320C3;
+  --color-on-accent-3: #FCFBFA;
+  --color-focus-ring: #CB2B0B;
+  --color-success: #10812C;
+  --color-warning: #8A6C11;
+  --color-danger: #9A1335;
+}
