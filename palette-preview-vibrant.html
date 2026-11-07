@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vibrant Palette Preview</title>
+<link rel="stylesheet" href="src/styles/palettes-vibrant.css">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font: 15px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: #E9E9EB; color: #1C1C1F;
+  }
+  .page-head {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 14px 24px; background: #F4F4F5; border-bottom: 1px solid #D4D4D8;
+  }
+  .page-head h1 { margin: 0; font-size: 17px; font-weight: 600; }
+  .toggle {
+    font: inherit; font-size: 14px; padding: 8px 14px; border-radius: 8px;
+    border: 1px solid #A1A1AA; background: #FAFAFA; color: #18181B; cursor: pointer;
+  }
+  .toggle:focus-visible { outline: 2px solid #18181B; outline-offset: 2px; }
+  main { display: grid; gap: 24px; padding: 24px; max-width: 1200px; margin: 0 auto; }
+
+  /* Palette section: everything below uses only palette tokens. */
+  .palette {
+    background: var(--color-bg); color: var(--color-text);
+    border: 1px solid var(--color-border); border-radius: 18px;
+    padding: 28px; display: grid; gap: 20px; overflow: hidden;
+  }
+  .palette-head h2 { margin: 0 0 4px; font-size: 24px; letter-spacing: -0.015em; }
+  .palette-head p { margin: 0; color: var(--color-text-muted); font-size: 14px; }
+  .palette-head code { font-size: 12px; color: var(--color-text-muted); }
+
+  .band {
+    height: 14px; border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-accent-2), var(--color-accent-3));
+  }
+
+  .body { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 22px; align-items: start; }
+  @media (max-width: 880px) { .body { grid-template-columns: 1fr; } }
+  .left { display: grid; gap: 18px; }
+
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 10px; }
+  .swatch { border: 1px solid var(--color-border); border-radius: 10px; overflow: hidden; background: var(--color-surface); }
+  .swatch .chip { height: 46px; border-bottom: 1px solid var(--color-border); }
+  .swatch .meta { padding: 6px 8px; display: grid; gap: 1px; }
+  .swatch .name { font-size: 11.5px; font-weight: 600; }
+  .swatch .hex { font: 11.5px ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--color-text-muted); }
+
+  .chart {
+    background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px;
+    padding: 16px 18px 12px; display: grid; gap: 10px;
+  }
+  .chart h3 { margin: 0; font-size: 13px; font-weight: 600; color: var(--color-text-muted); }
+  .bars { display: flex; align-items: flex-end; gap: 18px; height: 120px; border-bottom: 1px solid var(--color-border); }
+  .bar { flex: 1; border-radius: 6px 6px 0 0; }
+  .bar.a1 { height: 82%; background: var(--color-accent); }
+  .bar.a2 { height: 58%; background: var(--color-accent-2); }
+  .bar.a3 { height: 100%; background: var(--color-accent-3); }
+  .bar-labels { display: flex; gap: 18px; font-size: 12px; color: var(--color-text-muted); }
+  .bar-labels span { flex: 1; text-align: center; }
+
+  .card {
+    background: var(--color-surface-raised); border: 1px solid var(--color-border);
+    border-radius: 14px; padding: 22px; display: grid; gap: 14px;
+    box-shadow: 0 1px 2px rgb(0 0 0 / .06), 0 8px 24px rgb(0 0 0 / .07);
+  }
+  .card h3 { margin: 0; font-size: 19px; }
+  .card p { margin: 0; }
+  .caption { color: var(--color-text-muted); font-size: 13px; }
+  .card a { text-underline-offset: 3px; text-decoration-thickness: 2px; }
+  /* Link rule: accent text only where accent reaches 4.5:1 on bg (set by JS); otherwise text + accent underline. */
+  .palette[data-link="accent"] .card a { color: var(--color-accent); text-decoration-color: currentColor; }
+  .palette[data-link="underline"] .card a { color: var(--color-text); text-decoration-color: var(--color-accent); }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+  .btn {
+    font: inherit; font-size: 14px; font-weight: 700; padding: 9px 16px;
+    border-radius: 999px; cursor: pointer; border: 0;
+  }
+  .btn-1 { background: var(--color-accent); color: var(--color-on-accent); }
+  .btn-1:hover { background: var(--color-accent-hover); }
+  .btn-2 { background: var(--color-accent-2); color: var(--color-on-accent-2); }
+  .btn-3 { background: var(--color-accent-3); color: var(--color-on-accent-3); }
+  .btn:focus-visible, .field input:focus-visible, .field input.is-focused {
+    outline: 2px solid var(--color-focus-ring); outline-offset: 2px;
+  }
+
+  .field { display: grid; gap: 5px; font-size: 13px; }
+  .field input {
+    font: inherit; font-size: 14px; padding: 9px 11px; border-radius: 10px;
+    background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border);
+  }
+  .field input::placeholder { color: var(--color-text-muted); }
+  .field input.is-focused, .field input:focus { border-color: var(--color-focus-ring); }
+
+  .badge {
+    font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px;
+    background: var(--color-surface); border: 1.5px solid currentColor;
+  }
+  .badge.success { color: var(--color-success); }
+  .badge.warning { color: var(--color-warning); }
+  .badge.danger { color: var(--color-danger); }
+</style>
+</head>
+<body>
+<header class="page-head">
+  <h1>Vibrant Palette Preview: 5 palettes, light and dark</h1>
+  <button class="toggle" id="toggle" type="button" aria-pressed="false">Switch to dark</button>
+</header>
+<main id="palettes"></main>
+
+<script>
+  const TOKENS = ['bg', 'surface', 'surface-raised', 'border', 'text', 'text-muted',
+    'accent', 'accent-hover', 'on-accent', 'accent-2', 'on-accent-2', 'accent-3', 'on-accent-3',
+    'focus-ring', 'success', 'warning', 'danger'];
+  const PALETTES = [
+    ['zest', 'Zest', 'Electric citrus: lime, tangerine, hot yellow. Fitness, food delivery, youth campaigns.', ['Tangerine', 'Yellow', 'Lime']],
+    ['lagoon', 'Lagoon', 'Tropical: magenta, teal, mango. Travel, lifestyle, beauty, creator tools.', ['Magenta', 'Teal', 'Mango']],
+    ['neon-drive', 'Neon Drive', 'Synthwave: violet, cyan, hot pink on indigo. Gaming, music, streaming.', ['Violet', 'Cyan', 'Hot pink']],
+    ['primary-pop', 'Primary Pop', 'Pop primary: cobalt, sunflower, tomato. Education, kids, toys, editorial.', ['Cobalt', 'Sunflower', 'Tomato']],
+    ['sorbet', 'Sorbet', 'Coral, aqua, grape. Consumer apps, social, wellness, DTC brands.', ['Coral', 'Aqua', 'Grape']],
+  ];
+
+  const main = document.getElementById('palettes');
+  for (const [key, name, mood, labels] of PALETTES) {
+    const s = document.createElement('section');
+    s.className = 'palette';
+    s.dataset.palette = key;
+    s.dataset.theme = 'light';
+    s.innerHTML = `
+      <div class="palette-head">
+        <h2>${name}</h2>
+        <p>${mood}</p>
+        <code>data-palette="${key}"</code>
+      </div>
+      <div class="band" aria-hidden="true"></div>
+      <div class="body">
+        <div class="left">
+          <div class="swatches">
+            ${TOKENS.map(t => `
+              <div class="swatch">
+                <div class="chip" style="background: var(--color-${t})"></div>
+                <div class="meta"><span class="name">${t}</span><span class="hex" data-token="${t}"></span></div>
+              </div>`).join('')}
+          </div>
+          <div class="chart">
+            <h3>Weekly signups by channel</h3>
+            <div class="bars" aria-hidden="true"><div class="bar a1"></div><div class="bar a2"></div><div class="bar a3"></div></div>
+            <div class="bar-labels"><span>${labels[0]}</span><span>${labels[1]}</span><span>${labels[2]}</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Your summer challenge starts Monday</h3>
+          <p>Pick a goal, invite friends, and earn streak badges every week. <a href="#">See how streaks work</a>.</p>
+          <p class="caption">2,418 people joined this week · Ends 31 August</p>
+          <div class="row">
+            <button class="btn btn-1" type="button">Join now</button>
+            <button class="btn btn-2" type="button">Invite</button>
+            <button class="btn btn-3" type="button">Explore</button>
+          </div>
+          <label class="field">Email
+            <input type="email" placeholder="you@example.com">
+          </label>
+          <label class="field">Team name (focus state)
+            <input type="text" class="is-focused" value="Morning Movers">
+          </label>
+          <div class="row">
+            <span class="badge success">On track</span>
+            <span class="badge warning">Streak at risk</span>
+            <span class="badge danger">Missed day</span>
+          </div>
+        </div>
+      </div>`;
+    main.appendChild(s);
+  }
+
+  // WCAG 2.x contrast from hex, used only to choose the link style.
+  function lum(hex) {
+    const c = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16) / 255)
+      .map(v => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  }
+  function contrast(a, b) { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); }
+
+  function refresh() {
+    for (const s of document.querySelectorAll('.palette')) {
+      const cs = getComputedStyle(s);
+      const get = t => cs.getPropertyValue('--color-' + t).trim();
+      for (const el of s.querySelectorAll('.hex')) el.textContent = get(el.dataset.token) || '(missing)';
+      const accent = get('accent'), bg = get('bg');
+      s.dataset.link = /^#[0-9a-f]{6}$/i.test(accent) && /^#[0-9a-f]{6}$/i.test(bg) && contrast(accent, bg) >= 4.5 ? 'accent' : 'underline';
+    }
+  }
+
+  const toggle = document.getElementById('toggle');
+  let theme = 'light';
+  function setTheme(t) {
+    theme = t;
+    document.querySelectorAll('.palette').forEach(s => { s.dataset.theme = t; });
+    toggle.textContent = t === 'light' ? 'Switch to dark' : 'Switch to light';
+    toggle.setAttribute('aria-pressed', String(t === 'dark'));
+    refresh();
+  }
+  toggle.addEventListener('click', () => setTheme(theme === 'light' ? 'dark' : 'light'));
+  setTheme(new URLSearchParams(location.search).get('theme') === 'dark' ? 'dark' : 'light');
+</script>
+</body>
+</html>

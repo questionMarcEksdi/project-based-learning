@@ -1,0 +1,208 @@
+/*
+ * Vibrant UI palettes: 5 palettes × light/dark × 17 tokens.
+ * Usage: <html data-palette="zest" data-theme="light">
+ * Contrast (WCAG 2.x, computed): text ≥ 7:1 on bg/surface/surface-raised,
+ * text-muted ≥ 4.5:1, every on-accent ≥ 4.5:1 on its accent (and accent-hover),
+ * accents and focus-ring ≥ 3:1 on bg, status colors ≥ 4.5:1 on surface.
+ * Accents keep HSL saturation ≥ 70%; neutrals ≤ 20%.
+ */
+
+/* Zest: Lime, tangerine and hot yellow; energetic and sunny. Best for fitness, food delivery, youth and summer campaigns. */
+[data-palette="zest"][data-theme="light"] {
+  --color-bg: #F8F6F5;
+  --color-surface: #FCFBFB;
+  --color-surface-raised: #FDFDFD;
+  --color-border: #E2DDD9;
+  --color-text: #221B16;
+  --color-text-muted: #6B5E57;
+  --color-accent: #CF4500;
+  --color-accent-hover: #AB3900;
+  --color-on-accent: #FCFBFA;
+  --color-accent-2: #8F9400;
+  --color-on-accent-2: #1A130F;
+  --color-accent-3: #32A209;
+  --color-on-accent-3: #1A130F;
+  --color-focus-ring: #E04B00;
+  --color-success: #138455;
+  --color-warning: #A11795;
+  --color-danger: #A1172E;
+}
+[data-palette="zest"][data-theme="dark"] {
+  --color-bg: #15110F;
+  --color-surface: #1E1815;
+  --color-surface-raised: #27201B;
+  --color-border: #3D342E;
+  --color-text: #F1ECEA;
+  --color-text-muted: #B1A6A0;
+  --color-accent: #FF7E3D;
+  --color-accent-hover: #FF9661;
+  --color-on-accent: #16110D;
+  --color-accent-2: #F9FF3D;
+  --color-on-accent-2: #16110D;
+  --color-accent-3: #75F547;
+  --color-on-accent-3: #16110D;
+  --color-focus-ring: #FF8547;
+  --color-success: #67E9B3;
+  --color-warning: #E967DE;
+  --color-danger: #E9677D;
+}
+
+/* Lagoon: Magenta, teal and mango; playful and warm. Best for travel, lifestyle, beauty and creator tools. */
+[data-palette="lagoon"][data-theme="light"] {
+  --color-bg: #F8F5F6;
+  --color-surface: #FCFBFB;
+  --color-surface-raised: #FDFDFD;
+  --color-border: #E2DADF;
+  --color-text: #22161E;
+  --color-text-muted: #6B5763;
+  --color-accent: #D91290;
+  --color-accent-hover: #B80F7A;
+  --color-on-accent: #FCFAFB;
+  --color-accent-2: #089D98;
+  --color-on-accent-2: #1A0F16;
+  --color-accent-3: #B38600;
+  --color-on-accent-3: #1A0F16;
+  --color-focus-ring: #D0118A;
+  --color-success: #138630;
+  --color-warning: #A13717;
+  --color-danger: #A11729;
+}
+[data-palette="lagoon"][data-theme="dark"] {
+  --color-bg: #150F13;
+  --color-surface: #1E151B;
+  --color-surface-raised: #261C23;
+  --color-border: #3C2F37;
+  --color-text: #F1EAEE;
+  --color-text-muted: #B1A0AB;
+  --color-accent: #D7118E;
+  --color-accent-hover: #B60F78;
+  --color-on-accent: #FBF8FA;
+  --color-accent-2: #47F5EF;
+  --color-on-accent-2: #160D13;
+  --color-accent-3: #FFCF3D;
+  --color-on-accent-3: #160D13;
+  --color-focus-ring: #F155B8;
+  --color-success: #67E988;
+  --color-warning: #E98667;
+  --color-danger: #E96779;
+}
+
+/* Neon Drive: Violet, cyan and hot pink on deep indigo; nocturnal and electric. Best for gaming, music, streaming and Web3. */
+[data-palette="neon-drive"][data-theme="light"] {
+  --color-bg: #F5F5F8;
+  --color-surface: #FBFBFC;
+  --color-surface-raised: #FDFDFD;
+  --color-border: #DAD9E3;
+  --color-text: #181622;
+  --color-text-muted: #5A576B;
+  --color-accent: #6F12D9;
+  --color-accent-hover: #5E0FB8;
+  --color-on-accent: #FAFAFC;
+  --color-accent-2: #059CB3;
+  --color-on-accent-2: #110F1A;
+  --color-accent-3: #DD0683;
+  --color-on-accent-3: #FAFAFC;
+  --color-focus-ring: #6A11D0;
+  --color-success: #138639;
+  --color-warning: #986C16;
+  --color-danger: #A11717;
+}
+[data-palette="neon-drive"][data-theme="dark"] {
+  --color-bg: #0F0F15;
+  --color-surface: #16151E;
+  --color-surface-raised: #1C1B28;
+  --color-border: #2F2D3E;
+  --color-text: #EBEAF1;
+  --color-text-muted: #A2A0B1;
+  --color-accent: #9545F0;
+  --color-accent-hover: #8224ED;
+  --color-on-accent: #F9F8FB;
+  --color-accent-2: #42E2FA;
+  --color-on-accent-2: #0F0D16;
+  --color-accent-3: #DB0682;
+  --color-on-accent-3: #F9F8FB;
+  --color-focus-ring: #9E55F1;
+  --color-success: #67E993;
+  --color-warning: #E9BE67;
+  --color-danger: #E96767;
+}
+
+/* Primary Pop: Cobalt, sunflower and tomato red; bold and graphic. Best for education, kids products, toys and editorial brands. */
+[data-palette="primary-pop"][data-theme="light"] {
+  --color-bg: #F5F6F7;
+  --color-surface: #FBFBFC;
+  --color-surface-raised: #FDFDFD;
+  --color-border: #DBDDE1;
+  --color-text: #161A22;
+  --color-text-muted: #575D6B;
+  --color-accent: #124DD9;
+  --color-accent-hover: #0F42B8;
+  --color-on-accent: #FAFBFC;
+  --color-accent-2: #A88C00;
+  --color-on-accent-2: #0F121A;
+  --color-accent-3: #D92612;
+  --color-on-accent-3: #FAFBFC;
+  --color-focus-ring: #114AD0;
+  --color-success: #138442;
+  --color-warning: #A15717;
+  --color-danger: #A11740;
+}
+[data-palette="primary-pop"][data-theme="dark"] {
+  --color-bg: #0F1114;
+  --color-surface: #16181D;
+  --color-surface-raised: #1D1F26;
+  --color-border: #30333B;
+  --color-text: #EAECF1;
+  --color-text-muted: #A0A5B1;
+  --color-accent: #2F69EE;
+  --color-accent-hover: #1352E7;
+  --color-on-accent: #F8F9FB;
+  --color-accent-2: #FFDF3D;
+  --color-on-accent-2: #0D1016;
+  --color-accent-3: #DE2612;
+  --color-on-accent-3: #F8F9FB;
+  --color-focus-ring: #5584F1;
+  --color-success: #67E99D;
+  --color-warning: #E9A467;
+  --color-danger: #E9678E;
+}
+
+/* Sorbet: Coral, aqua and grape; fresh and friendly. Best for consumer apps, social, wellness and DTC brands. */
+[data-palette="sorbet"][data-theme="light"] {
+  --color-bg: #F8F5F5;
+  --color-surface: #FCFBFB;
+  --color-surface-raised: #FDFDFD;
+  --color-border: #E2DBDA;
+  --color-text: #221816;
+  --color-text-muted: #6B5A57;
+  --color-accent: #DC2E0C;
+  --color-accent-hover: #BB270A;
+  --color-on-accent: #FCFAFA;
+  --color-accent-2: #0D9E9E;
+  --color-on-accent-2: #1A110F;
+  --color-accent-3: #931DCD;
+  --color-on-accent-3: #FCFAFA;
+  --color-focus-ring: #D52D0B;
+  --color-success: #138630;
+  --color-warning: #8F7014;
+  --color-danger: #A11750;
+}
+[data-palette="sorbet"][data-theme="dark"] {
+  --color-bg: #15100F;
+  --color-surface: #1E1715;
+  --color-surface-raised: #261E1C;
+  --color-border: #3C312F;
+  --color-text: #F1EBEA;
+  --color-text-muted: #B1A3A0;
+  --color-accent: #F56447;
+  --color-accent-hover: #F78169;
+  --color-on-accent: #160F0D;
+  --color-accent-2: #4CF0F0;
+  --color-on-accent-2: #160F0D;
+  --color-accent-3: #AA38E3;
+  --color-on-accent-3: #FBF9F8;
+  --color-focus-ring: #F66C51;
+  --color-success: #67E988;
+  --color-warning: #E9C967;
+  --color-danger: #E9679D;
+}
