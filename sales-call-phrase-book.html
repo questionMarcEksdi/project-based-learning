@@ -99,6 +99,7 @@ h1 {
 }
 .say { margin: 0; font-size: 15px; }
 .item.note .say { font-style: italic; color: var(--muted); }
+.item.them .say { color: var(--muted); }
 .item.key .say { background: var(--accent-soft); padding: 8px 10px; border-radius: 4px; }
 .ph { color: var(--accent); font-weight: 600; }
 .empty { text-align: center; color: var(--muted); padding: 32px 0; margin: 0; }
@@ -108,19 +109,21 @@ h1 {
 <div class="wrap">
   <header>
     <div>
-      <div class="eyebrow">Discovery &amp; sales calls · Online boxing coaches</div>
+      <div class="eyebrow">Discovery &amp; sales calls · Landing pages for online boxing coaches</div>
       <h1>Sales Call Phrase Book</h1>
     </div>
-    <p class="intro">Exactly what to say, sorted by the moment you need it. Words in <mark>[brackets]</mark> are yours to fill in. Use it with your <a href="https://claude.ai/artifact/4QLx3fgG1H4ZdDXAioEhjy">Funnel Discovery Cheat Sheet</a>.</p>
+    <p class="intro">Exactly what to say, sorted by the moment you need it. After every answer, use <b>ACA</b>: acknowledge, compliment, ask. Words in <mark>[brackets]</mark> are yours to fill in. Use it with your <a href="https://claude.ai/artifact/4QLx3fgG1H4ZdDXAioEhjy">Landing Page Discovery Cheat Sheet</a>.</p>
   </header>
 
   <div class="bar">
     <div class="search">
       <label for="q" class="when" style="position:absolute;left:-9999px">Search phrases</label>
-      <input id="q" type="search" placeholder="Search a moment: expensive, ghost, blank, price…" autocomplete="off">
+      <input id="q" type="search" placeholder="Search a moment: expensive, ghost, link, price…" autocomplete="off">
     </div>
     <nav class="jumps" aria-label="Jump to section">
+      <a href="#aca">ACA</a>
       <a href="#flow">Call flow</a>
+      <a href="#pain">Pain questions</a>
       <a href="#objections">Objections</a>
       <a href="#rescue">Rescue lines</a>
     </nav>
@@ -133,6 +136,34 @@ h1 {
 
 <script>
 var BOOK = [
+  { id: "aca", title: "ACA", sub: "Acknowledge, Compliment, Ask. Use it after answers, pushback and tough questions so it never feels like an interrogation.", cards: [
+    { h: "The formula", items: [
+      ["A · Acknowledge", "That makes sense. / Got it. / Yeah, that's frustrating."],
+      ["C · Compliment", "Smart that you track that. / Honestly, most coaches never think about that."],
+      ["A · Ask", "Your next question, built from what they just said.", "note"],
+      ["Rule", "Keep compliments real and specific. If you can't mean it, skip it and just acknowledge.", "note"]
+    ]},
+    { h: "After a normal answer", items: [
+      ["They say", "I get maybe 20 DMs a month about coaching.", "them"],
+      ["You say", "Okay, 20 a month is solid. Honestly, a lot of coaches your size get way fewer. How many of those end up paying?", "key"]
+    ]},
+    { h: "After a painful answer", items: [
+      ["They say", "Honestly, half of them ghost after I send the price.", "them"],
+      ["You say", "Ugh, that's frustrating after you've put the time in. Good on you for knowing that number though, most coaches don't. At what point do they usually go quiet?", "key"]
+    ]},
+    { h: "When they doubt you", items: [
+      ["They say", "Do you have any results yet?", "them"],
+      ["You say", "Fair question, and honestly it's the right one to ask. Not yet. You'd be one of my first boxing coaches, which is why [your risk-reversal terms]. Want to see a sample page I built so you can judge the work?", "key"]
+    ]},
+    { h: "When they ask price early", items: [
+      ["They say", "So how much is this?", "them"],
+      ["You say", "Totally fair to ask. Smart to know what you're getting into. It depends on what you need, which is why I'm asking. Give me five more minutes and I'll give you a real number. Okay?", "key"]
+    ]},
+    { h: "When they push back", items: [
+      ["They say", "I need to think about it.", "them"],
+      ["You say", "Of course, that makes sense. I'd rather you think it through than rush. What part do you want to think over: the price, whether it'll work for you, or the timing?", "key"]
+    ]}
+  ]},
   { id: "flow", title: "Call flow", sub: "In roughly the order they come up.", cards: [
     { h: "Opening", items: [
       ["Start the call", "Hey [name], thanks for jumping on. I've got us down for 15 minutes. Does that still work?"],
@@ -166,7 +197,7 @@ var BOOK = [
     { h: "Get the numbers", items: [
       ["They're vague", "Roughly how many? 10? 50? Ballpark is fine."],
       ["Ask about price", "Can I ask what you charge? I only ask so I don't suggest something that doesn't fit your business."],
-      ["Say the gap", "So you're at [X] clients and want [Y]. That's about [$ gap] a month you're not making yet. Sound right?", "key"]
+      ["Say the gap", "So about [X] people a month ask and don't join. At [$ price] each, that's around [$ gap] a month walking away. Sound right?", "key"]
     ]},
     { h: "Impact and goal", items: [
       ["Their goal", "What's the goal? How many clients, or what monthly income?"],
@@ -175,54 +206,87 @@ var BOOK = [
       ["Priority", "Of everything we talked about, what would you fix first?"]
     ]},
     { h: "Summarize", items: [
-      ["Before you close", "Let me make sure I've got it. You're getting [X] inquiries but converting [Y] because [reason]. You want [goal]. Did I miss anything?", "key"],
+      ["Before you close", "Let me make sure I've got it. You're getting [X] inquiries but only [Y] sign up because [reason]. You want [goal]. Did I miss anything?", "key"],
       ["Say it's a fit", "Based on what you've told me, I think I can help. Here's why: [one sentence tied to their problem]."]
     ]},
     { h: "Book the next step", items: [
-      ["Offer two times", "I'll put together a quick plan of what your funnel would look like and walk you through it. 20 minutes, [day] or [day]?", "key"],
+      ["Offer two times", "I'll put together a quick mockup of what your landing page would look like and walk you through it. 20 minutes, [day] or [day]?", "key"],
       ["Lock it in", "I'll send the calendar invite now. Anything you want me to look at before then?"]
     ]},
     { h: "Ask for the yes", items: [
-      ["On the follow-up call", "That's the plan. Want to get started?"],
+      ["On the follow-up call", "That's the page. Want to get started?"],
       ["Then", "Stop talking and wait for their answer.", "note"],
       ["They say yes", "Great. I'll send the invoice and onboarding form today, and we'll kick off on [day]."]
     ]}
   ]},
-  { id: "objections", title: "Objections", sub: "Agree first, then ask a question. Never argue.", cards: [
-    { h: "Do you have results?", items: [
-      ["Be straight", "Not yet, and I'll be honest with you. You'd be one of my first boxing coaches. That's why I'm offering a founding rate, and [your risk-reversal terms]. In return I'd ask for an honest testimonial if it works.", "key"],
-      ["Back it up", "I can show you a sample funnel I built for a boxing coach so you can see the work."]
+  { id: "pain", title: "Pain questions", sub: "Ask what happens, not whether they need a landing page. Let them find the problem.", cards: [
+    { h: "Link in bio", items: [
+      ["Start here", "Walk me through what happens after someone clicks your link in bio.", "key"],
+      ["Count the steps", "How many steps is it from ‘I'm interested’ to actually paying you?"],
+      ["Dig", "Where do you think people get stuck in that?"]
     ]},
-    { h: "Why you over others?", items: [
-      ["Your edge", "I only work with boxing coaches, so I'm not guessing about your clients. And as one of my first, you'd get more of my attention than a big agency would give you."]
+    { h: "Repeating yourself in DMs", items: [
+      ["Find the repeats", "What do people usually ask you before they sign up?", "key"],
+      ["How often", "How often are you answering those same questions?"],
+      ["Size it", "How many hours a week do you think that adds up to?"],
+      ["Personal", "What would you do with that time if you got it back?"]
+    ]},
+    { h: "People who go quiet", items: [
+      ["Conversion", "Of everyone who asks about coaching, how many end up paying?", "key"],
+      ["Drop-off point", "At what point do the others go quiet?"],
+      ["Cause", "What do you think stops them?"],
+      ["Size it", "So that's about [X] people a month who were interested and didn't join?"]
+    ]},
+    { h: "Credibility", items: [
+      ["Why you", "When someone's choosing between you and another coach, what makes them pick you?"],
+      ["Proof", "Where can a new person see your client results right now?", "key"],
+      ["Doubt", "Has anyone ever seemed unsure whether you were legit? How did you handle it?"]
+    ]},
+    { h: "Price", items: [
+      ["Reaction", "How do people react when you tell them the price?", "key"],
+      ["Discounts", "Do you ever find yourself giving discounts to close someone?"],
+      ["Timing", "At what point in the chat does price usually come up?"]
+    ]},
+    { h: "Past and future", items: [
+      ["Tried before", "Have you ever tried building a website or page yourself? What happened?"],
+      ["Then", "Listen for time, tech skills or money. That's why done-for-you fits.", "note"],
+      ["Growth limit", "If your followers doubled tomorrow, could you handle the inquiries the way you do it now?", "key"],
+      ["Viral reel", "What happens to your DMs when a reel blows up?"]
+    ]}
+  ]},
+  { id: "objections", title: "Objections", sub: "Use ACA: acknowledge, compliment, then ask. Never argue.", cards: [
+    { h: "Do you have results?", items: [
+      ["Be straight", "Fair question, and honestly it's the right one to ask. Not yet. You'd be one of my first boxing coaches. That's why I'm offering a founding rate, and [your risk-reversal terms]. In return I'd ask for an honest testimonial if it works.", "key"],
+      ["Back it up", "Want to see a sample landing page I built for a boxing coach? Then you can judge the work yourself."],
+      ["If they ask why you", "Good question, you should be picky. I only build pages for boxing coaches, so I'm not guessing about your clients. And as one of my first, you'd get more of my attention than a big agency would give you."]
     ]},
     { h: "How much is it? (early)", items: [
-      ["Hold it for later", "Fair question. It depends on what you actually need, which is why I'm asking these. Give me five more minutes and I'll give you a real answer instead of a guess. Okay?"]
+      ["Hold it for later", "Totally fair to ask. Smart to know what you're getting into. It depends on what you actually need, which is why I'm asking these. Give me five more minutes and I'll give you a real answer instead of a guess. Okay?"]
     ]},
     { h: "That's too expensive", items: [
-      ["First", "I get it. Can I ask, too expensive compared to what?"],
-      ["Then", "You said you're about [$ gap] a month short of your goal. How many new clients would it take for this to pay for itself?", "key"]
+      ["First", "I hear you. It's smart to be careful with money in your business. Can I ask, too expensive compared to what?"],
+      ["Then", "You said about [X] people a month ask and don't join. At [$ price] each, how many of them would need to sign up for this page to pay for itself?", "key"]
     ]},
     { h: "I need to think about it", items: [
-      ["Find the real reason", "Of course. Usually when someone says that, there's one part they're not sure about. Is it the price, whether it'll work for you, or the timing?", "key"]
+      ["Find the real reason", "Of course, that makes sense. I'd rather you think it through than rush. Usually there's one part people want to think over. Is it the price, whether it'll work for you, or the timing?", "key"]
     ]},
     { h: "I can build it myself", items: [
-      ["Agree, then ask", "You definitely could. The question is whether you want to spend your evenings on funnel tech or on coaching. How much time do you have for it?"]
+      ["Agree, then ask", "You definitely could, and it says a lot that you're hands-on. The question is whether you want your evenings on web design or on coaching. How much time do you actually have for it?"]
     ]},
-    { h: "I tried a funnel before", items: [
-      ["Get the story", "What happened?"],
+    { h: "I tried a website before", items: [
+      ["Get the story", "That's useful to know, thanks for being upfront. What happened with it?"],
       ["Then", "What would need to be different this time for it to be worth trying?"]
     ]},
     { h: "Just send me some info", items: [
-      ["Narrow it down", "Happy to. So I send the right thing, which part do you want to look at more closely?"],
+      ["Narrow it down", "Happy to. Good that you want to look properly before deciding. So I send the right thing, which part do you want to look at more closely?"],
       ["Keep a next step", "Let's grab 15 minutes after you've read it so I can answer your questions. [Day] work?"]
     ]},
     { h: "I need to ask my partner", items: [
-      ["Help them sell it", "Makes sense. What do you think they'll ask?"],
+      ["Help them sell it", "Makes sense, it's good you decide together. What do you think they'll ask?"],
       ["Bring them in", "Want to set up a time where we all go through it together?"]
     ]},
     { h: "Not ready right now", items: [
-      ["Find the timing", "No problem. What would need to happen for it to be the right time?"],
+      ["Find the timing", "No problem, I get it. Better to start when you can give it proper attention. What would need to happen for it to be the right time?"],
       ["Leave the door open", "Mind if I check in with you on [date]?"]
     ]}
   ]},
@@ -238,7 +302,7 @@ var BOOK = [
       ["Or", "Walk me through the last person who DM'd you. What happened?"]
     ]},
     { h: "They push you to pitch", items: [
-      ["Hold the frame", "I will, I promise. I just want to understand your setup first so I'm not pitching something you don't need. Two more questions?"]
+      ["Hold the frame", "Totally fair, you want to know what this is. I will, I promise. I just want to understand your setup first so I'm not pitching something you don't need. Two more questions?"]
     ]},
     { h: "You don't know the answer", items: [
       ["Don't guess", "Good question. I don't want to guess, so let me check and get back to you by [day]."]
@@ -250,10 +314,10 @@ var BOOK = [
       ["What to do", "Say nothing. Count to five in your head. They'll fill it.", "note"]
     ]},
     { h: "It's not a fit", items: [
-      ["Walk away", "Honestly, from what you've told me, I don't think a funnel is what you need right now. [Reason]. I'd rather tell you that than take your money."]
+      ["Walk away", "Honestly, from what you've told me, I don't think a landing page is what you need right now. [Reason]. I'd rather tell you that than take your money."]
     ]},
     { h: "They ghost after the call", items: [
-      ["Follow-up DM", "Hey [name], still want that funnel plan we talked about? I've got [day] or [day] open."]
+      ["Follow-up DM", "Hey [name], still want that landing page mockup we talked about? I've got [day] or [day] open."]
     ]}
   ]}
 ];
