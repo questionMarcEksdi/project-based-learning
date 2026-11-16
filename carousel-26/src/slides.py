@@ -23,7 +23,7 @@ mist = [
 ]
 for i,(h,b) in enumerate(mist,1):
     slides.append(("dark", f'''
-<div class="label">Mistake {i}</div>
+<div class="label mlabel">Mistake {i}</div>
 <h2 class="mid">{esc(h)}</h2>
 <p class="body">{b}</p>'''))
 slides.append(("accent", '''
@@ -63,6 +63,7 @@ h2.mid{font-size:92px;line-height:1.02;font-weight:900;letter-spacing:-.02em;mar
 .num{font-size:260px;line-height:.8;font-weight:900;color:#C9B79C;letter-spacing:-.04em;margin-bottom:36px}
 .label{font-size:36px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8E877D;margin-bottom:24px}
 .label.inv{color:#3A342C}
+.mlabel{font-size:50px;color:#C9B79C;margin-bottom:32px}
 .label.dark{color:#6B655C;margin-bottom:48px}
 .quote{color:#F2EEE7;font-weight:700}
 ol.recap{list-style:none}
