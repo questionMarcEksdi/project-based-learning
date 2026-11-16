@@ -23,7 +23,6 @@ mist = [
 ]
 for i,(h,b) in enumerate(mist,1):
     slides.append(("dark", f'''
-<div class="num">0{i}</div>
 <div class="label">Mistake {i}</div>
 <h2 class="mid">{esc(h)}</h2>
 <p class="body">{b}</p>'''))
